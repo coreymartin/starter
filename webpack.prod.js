@@ -16,5 +16,5 @@ module.exports = {
     })
   ],
 
-  module: console.module
+  module: config.module
 };
