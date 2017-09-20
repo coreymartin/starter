@@ -6,7 +6,10 @@ class Container extends Component {
   }
   render () {
     return (
-      <div>Simple react example</div>
+      <div>
+        <h1>React router example</h1>
+        <div>{this.props.children}</div>
+      </div>
     )
   }
 }
