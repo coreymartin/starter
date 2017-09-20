@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter, Route} from 'react-router-dom'
-import {Container} from './components/Container'
-import {Home} from './components/Home'
+import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom'
+import {PasswordReset} from './components/PasswordReset'
 
 const app = document.getElementById('app')
 
 ReactDOM.render((
   <BrowserRouter>
-    <Container>
-      <Route path="/home" component={Home}/>
-    </Container>
+    <Switch>
+      <Route path="/" component={PasswordReset}/>
+    </Switch>
   </BrowserRouter>
 ), app)

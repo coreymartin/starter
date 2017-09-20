@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config')
 const publicPath = '/'
 
@@ -6,7 +7,6 @@ module.exports = {
   entry: config.entry,
   output: {
     filename: config.output.filename,
-    path: config.output.path,
     publicPath: publicPath
   },
 
@@ -19,13 +19,35 @@ module.exports = {
     noInfo: false,
     stats: 'minimal',
     publicPath: publicPath,
-    contentBase: config.output.path,
     hot: true
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.ejs'
+    }),
   ],
 
-  module: config.module
+  module: {
+    rules: [
+      config.jsModule,
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          'sass-loader',
+        ],
+      }
+    ]
+  }
 };
