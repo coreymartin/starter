@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import s from './styles.scss'
 
-class PasswordReset extends Component {
+class Home extends Component {
   constructor (props) {
     super(props)
   }
@@ -14,4 +14,4 @@ class PasswordReset extends Component {
   }
 }
 
-export {PasswordReset}
+export {Home}
