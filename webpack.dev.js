@@ -3,6 +3,7 @@ const config = require('./config')
 const publicPath = '/'
 
 module.exports = {
+  mode: 'development',
   entry: config.entry,
   output: {
     filename: config.output.filename,
