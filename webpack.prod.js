@@ -1,12 +1,8 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
 const config = require('./config');
-
-const extractSass = new ExtractTextPlugin({
-  filename: '[name].[contenthash].css'
-});
 
 module.exports = {
   mode: 'production',
@@ -16,7 +12,9 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
   },
   plugins: [
-    extractSass,
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
     new HtmlWebpackPlugin({
       template: 'index.ejs'
     }),
@@ -27,20 +25,19 @@ module.exports = {
       config.jsModule,
       { 
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                sourceMap: true,
-                importLoaders: 1,
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
-            },
-            'sass-loader',
-          ],
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          'sass-loader',
+        ],
       }
     ]
   }
