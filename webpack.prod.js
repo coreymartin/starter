@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
@@ -10,18 +9,14 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
+  mode: 'production',
   entry: config.entry,
   output: {
     filename: config.output.filename,
     path: path.resolve(__dirname, 'build'),
   },
-
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
     extractSass,
-    new UglifyJSPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.ejs'
     }),
