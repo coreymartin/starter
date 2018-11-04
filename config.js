@@ -1,6 +1,6 @@
-const path = require('path')
+import path from 'path'
 
-module.exports = {
+export default {
   entry: './app/index.js',
   output: {
     filename: 'app.js',

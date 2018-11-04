@@ -1,8 +1,9 @@
-const webpack = require('webpack')
-const config = require('./config')
+import webpack from 'webpack'
+import config from './config'
+
 const publicPath = '/'
 
-module.exports = {
+export default {
   mode: 'development',
   entry: config.entry,
   output: {
@@ -27,4 +28,4 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-};
+}

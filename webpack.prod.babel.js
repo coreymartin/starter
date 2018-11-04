@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const config = require('./config');
+import webpack from 'webpack'
+import config from './config'
 
-module.exports = {
+export default {
   mode: 'production',
   entry: config.entry,
   output: {
     filename: config.output.filename,
     path: config.output.path
   }
-};
+}
