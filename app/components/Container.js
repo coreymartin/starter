@@ -1,14 +1,18 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 class Container extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
+    this.state = {
+      date: new Date().toDateString(),
+    }
   }
-  render () {
+
+  render() {
     return (
-      <div>Simple react example</div>
+      <div>Simple react example {this.state.date}</div>
     )
   }
 }
 
-export {Container}
+export default Container
