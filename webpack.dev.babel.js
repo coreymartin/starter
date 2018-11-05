@@ -1,32 +1,33 @@
-const webpack = require('webpack')
-const config = require('./config')
+import webpack from 'webpack'
+import config from './config'
+
 const publicPath = '/'
 
-module.exports = {
+export default {
   mode: 'development',
   entry: config.entry,
   output: {
+    publicPath,
     filename: config.output.filename,
     path: config.output.path,
-    publicPath: publicPath
   },
 
   devtool: 'cheap-module-source-map',
 
   devServer: {
+    publicPath,
     port: 8080,
     host: '0.0.0.0',
     historyApiFallback: true,
     noInfo: false,
     stats: 'minimal',
-    publicPath: publicPath,
     contentBase: config.output.path,
-    hot: true
+    hot: true,
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
-  module: config.module
-};
+  module: config.module,
+}
