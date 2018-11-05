@@ -1,4 +1,3 @@
-import webpack from 'webpack'
 import config from './config'
 
 export default {
@@ -6,6 +5,6 @@ export default {
   entry: config.entry,
   output: {
     filename: config.output.filename,
-    path: config.output.path
-  }
+    path: config.output.path,
+  },
 }
