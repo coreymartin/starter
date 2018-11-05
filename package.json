@@ -15,6 +15,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "lint-staged": "^8.0.4",
     "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2",
     "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
@@ -24,7 +25,7 @@
     "react": "^16.6.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.babel.js",
+    "build": "rimraf ./build && webpack --config webpack.prod.babel.js",
     "serve": "webpack-dev-server --config webpack.dev.babel.js",
     "lint": "eslint config.js webpack.prod.babel.js webpack.dev.babel.js app --color",
     "lint-commit": "lint-staged"
