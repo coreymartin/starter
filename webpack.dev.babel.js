@@ -1,32 +1,35 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const config = require('./config')
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import config from './config'
+
 const publicPath = '/'
 
-module.exports = {
+export default {
   mode: 'development',
   entry: config.entry,
   output: {
+    publicPath,
     filename: config.output.filename,
-    publicPath: publicPath
+    path: config.output.path,
   },
 
   devtool: 'cheap-module-source-map',
 
   devServer: {
+    publicPath,
     port: 8080,
     host: '0.0.0.0',
     historyApiFallback: true,
     noInfo: false,
     stats: 'minimal',
-    publicPath: publicPath,
-    hot: true
+    contentBase: config.output.path,
+    hot: true,
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.ejs'
+      template: 'index.ejs',
     }),
   ],
 
@@ -43,12 +46,12 @@ module.exports = {
               modules: true,
               sourceMap: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
           },
           'sass-loader',
         ],
-      }
-    ]
-  }
-};
+      },
+    ],
+  },
+}

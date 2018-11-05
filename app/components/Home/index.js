@@ -1,17 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
 import s from './styles.scss'
 
-class Home extends Component {
-  constructor (props) {
-    super(props)
-  }
-  render () {
-    return (
-      <div className={s.wrapper}>
-        <h1>React, SASS loader, React Router, and dynamic HTML index generation for both dev and prod webpack</h1>
-      </div>
-    )
-  }
+function Home() {
+  return (
+    <div className={s.wrapper}>
+      <h2>Home page</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+  )
 }
 
-export {Home}
+export default Home

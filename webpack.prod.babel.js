@@ -1,10 +1,9 @@
-const webpack = require('webpack');;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require('path')
-const config = require('./config');
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path'
+import config from './config'
 
-module.exports = {
+export default {
   mode: 'production',
   entry: config.entry,
   output: {
@@ -13,17 +12,17 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-      template: 'index.ejs'
+      template: 'index.ejs',
     }),
   ],
 
   module: {
     rules: [
       config.jsModule,
-      { 
+      {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -33,12 +32,12 @@ module.exports = {
               modules: true,
               sourceMap: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
           },
           'sass-loader',
         ],
-      }
-    ]
-  }
-};
+      },
+    ],
+  },
+}
