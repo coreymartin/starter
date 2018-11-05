@@ -21,7 +21,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.babel.js",
     "serve": "webpack-dev-server --config webpack.dev.babel.js",
-    "lint": "eslint *.js --color",
+    "lint": "eslint config.js webpack.prod.babel.js webpack.dev.babel.js app --color",
     "lint-commit": "lint-staged"
   },
   "pre-commit": {
