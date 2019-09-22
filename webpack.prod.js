@@ -1,33 +1,19 @@
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import config from './config'
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
+const config = require('./webpack-config')
 
-const publicPath = '/'
-
-export default {
-  mode: 'development',
+module.exports = {
+  mode: 'production',
   entry: config.entry,
   output: {
-    publicPath,
     filename: config.output.filename,
-    path: config.output.path,
+    path: path.resolve(__dirname, 'build'),
   },
-
-  devtool: 'cheap-module-source-map',
-
-  devServer: {
-    publicPath,
-    port: 8080,
-    host: '0.0.0.0',
-    historyApiFallback: true,
-    noInfo: false,
-    stats: 'minimal',
-    contentBase: config.output.path,
-    hot: true,
-  },
-
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
     }),
@@ -39,7 +25,7 @@ export default {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             query: {
